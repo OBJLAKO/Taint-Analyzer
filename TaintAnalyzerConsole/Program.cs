@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using TaintAnalyzer.Models;
+using TaintAnalyzerConsole.Application;
 
 #region customFeatures
 
@@ -36,7 +37,7 @@ void ShowHelp()
     Console.WriteLine();
     Console.ForegroundColor = ConsoleColor.White;
     Console.WriteLine("Options:");
-    Console.WriteLine("  -i, --input <path>      Path to .cs file or directory (required)");
+    Console.WriteLine("  -i, --input <path>      Path to .sln file or directory (required)");
     Console.WriteLine("  -o, --output <path>     Path to save results (required)");
     Console.WriteLine("  -f, --format <format>   Output format: SARIF, JSON, HTML (default: SARIF)");
     Console.WriteLine("  -v, --vulnerabilities   Comma-separated vulnerabilities to check");
@@ -89,6 +90,8 @@ try
 
     StartBanner();
 
+    var analyzer = new Analyzer(taintAnalyzeModel);
+    analyzer.RunAnalysis();
     return 0;
 }
 catch (Exception ex)
