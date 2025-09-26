@@ -81,7 +81,7 @@ try
         return 1;
     }
 
-    var taintAnalyzeModel = new TaintAnalyzerOptions(
+    var options = new TaintAnalyzerOptions(
         inputPath,
         outputPath,
         config["format"] ?? config["f"] ?? "SARIF",
@@ -90,7 +90,7 @@ try
 
     StartBanner();
 
-    var analyzer = new Analyzer(taintAnalyzeModel);
+    var analyzer = new Analyzer(options);
     analyzer.RunAnalysis();
     return 0;
 }
